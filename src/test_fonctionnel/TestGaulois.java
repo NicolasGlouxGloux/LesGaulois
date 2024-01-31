@@ -7,12 +7,13 @@ import personnages.Soldat;
 import personnages.Centurion;
 import sites.Village;
 import sites.Camp;
+import personnages.Druide;
 
 public class TestGaulois {
 	public static void main(String[] args) {
-		Gaulois asterix = new Gaulois("Astérix", 8);
+		Gaulois asterix = new Gaulois("Asterix", 8);
 		Centurion minus = new Centurion("Minus", 6);
-		asterix.parler(": \"Bonjour à tous\"");
+		asterix.parler(": \"Bonjour a tous\"");
 		minus.parler("\"UN GAU.. UN GAUGAU...\"");
 		for (int i = 0; i < 3; i++) {
 			if (asterix.getForce() > 0) {
@@ -22,20 +23,22 @@ public class TestGaulois {
 				minus.frapper(asterix);
 			}
 		}
-		Gaulois vercingetorix = new Gaulois("Vercingétorix", 5);
+		Gaulois vercingetorix = new Gaulois("Vercingetorix", 5);
 		Gaulois agecanonix = new Gaulois("Agecanonix", 1);
 		Gaulois assurancetourix = new Gaulois("Assurancetourix", 2);
 		Gaulois obelix = new Gaulois("Obelix", 15);
 		Gaulois prolix = new Gaulois("Prolix", 2);
+		Druide panoramix = new Druide("Panoramix", 3, 3);
+		panoramix.parler(" : \"J'ai concoct� " + panoramix.getNbDoses() + " doses de potion magique. Elle a une force de " + .\"");
 
-		// Création des soldats
+		// Creation des soldats
 		Soldat brutus = new Soldat("Brutus", 2,Grade.CENTURION);
 		Soldat milexcus = new Soldat("Milexcus", 2,Grade.OPTIO);
 		Soldat tulliusOctopus = new Soldat("Tullius Octopus", 2,Grade.TESSERARIUS);
 		Soldat ballondebaudrus = new Soldat("Ballondebaudrus", 3,Grade.SOLDAT);
 
         Village village = new Village(vercingetorix);
-        vercingetorix.parler(" : \"Je suis un grand guerrier et je vais créer mon village.\"");
+        vercingetorix.parler(" : \"Je suis un grand guerrier et je vais creer mon village.\"");
 
         Camp camp = new Camp(minus);
 
@@ -64,7 +67,7 @@ public class TestGaulois {
         camp.changerCommandant(briseradius);
         camp.changerCommandant(chorus);
 
-        // Affichage après les changements
+        // Affichage apres les changements
         village.afficherVillage();
         camp.afficherCamp();
 	}
