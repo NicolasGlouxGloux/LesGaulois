@@ -4,34 +4,37 @@ public abstract class Personnage {
 	private String nom;
 	private int force;
 
-	public String getNom() {
-		return nom;
-	}
-	
-	protected Personnage(String nom, int force) {
+	public Personnage(String nom, int force) {
 		this.nom = nom;
 		this.force = force;
 	}
-	
-	protected abstract String donnerAuteur();
 
-	public void parler(String texte) {
-		System.out.println("le gaulois " + nom + " : " + texte);
+	public String getNom() {
+		return nom;
 	}
-	
-	
-	public void frapper(Personnage adversaire) {
-		System.out.println(donnerAuteur() + " envoie un grand coup dans la mâchoire de " + adversaire.getNom());
-		adversaire.recevoirCoup(force / 3);
+
+	public int getForce() {
+		return force;
 	}
-	
-	public void recevoirCoup(int forceCoup) {
-		force = force - forceCoup;
-		if (force <= 0) {
-			force = 0;
-			this.parler("J'abandonne");
+
+	protected abstract String auteur();
+
+	public void parler(String parole) {
+		System.out.println(auteur() + nom + parole);
+	}
+
+	public void frapper(Personnage cible) {
+		parler(" frappe " + cible.auteur() + cible.getNom());
+		cible.recevoirCoup(force / 3);
+	}
+
+	public void recevoirCoup(int degat) {
+		force = force - degat;
+		if (force > 0) {
+			parler(": \"aie\"");
 		} else {
-			this.parler("Aîe !");
+			force = 0;
+			parler(": \"j'abandonne\"");
 		}
 	}
 }
