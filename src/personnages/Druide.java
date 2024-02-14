@@ -1,31 +1,39 @@
 package personnages;
 
-import java.security.SecureRandom;
-import java.util.Random;
+public class Druide extends Gaulois {
 
-public class Druide extends Gaulois{
-	private Potion potion;
-	private Random random;
+	private int dosesPotion;
+	private int forcePotion;
 	
 	public Druide(String nom, int force) {
 		super(nom, force);
 	}
-		
-	public Potion fabriquerPotion(int nbDoses) {
-		try {
-			random = SecureRandom.getInstanceStrong();
-			int forcePotion = random.nextInt(6)+2;
-			potion = new Potion (nbDoses, );
-			int forcePotion = potion.getForce();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+	
+	public void fabriquerPotion(int doses) {
+		dosesPotion = doses;
+		forcePotion = 2 + (int)(Math.random() * 3);
+		this.parler("J'ai concocté " + dosesPotion + " doses de potion magique. Elle a une force de " + forcePotion );
+	}
+	
+	
+	public void donnerPotion(Gaulois gaulois) {
+		if ( !"Obélix".equals(gaulois.getNom()) ) {
+			if (dosesPotion>0) {
+				this.parler("Tiens " + gaulois.getNom() + " un peu de potion magique.");
+				gaulois.recevoirPotion(forcePotion);
+				dosesPotion--;
+			}
+			else {
+				this.parler("Désolé " + gaulois.getNom() + "il n'y a plus une seule goutte de potion.");
+			}
+		}		
+		else {
+			this.parler("Non, Obélix Non !... Et tu le sais très bien !");
 		}
-		return potion;
 	}
+		
+	
+	
+	
 
-	@Override
-	protected String auteur() {
-		return "Le Druide ";
-	}
 }

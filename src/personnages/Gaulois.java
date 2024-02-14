@@ -1,46 +1,39 @@
 package personnages;
 
-public class Gaulois extends Personnage {
-//	private String nom;
-//	private int force;
-//
-//	public Gaulois(String nom, int force) {
-//		this.nom = nom;
-//		this.force = force;
-//	}
-//
-//	public String getNom() {
-//		return nom;
-//	}
-//
-//	public int getForce() {
-//		return force;
-//	}
-//	
-//	public void parler(String parole) {
-//		System.out.println("le gaulois " + nom + parole);
-//	}
-//
-//	public void frapper(Romain romain) {
-//		parler(" frappe le romain " + romain.getNom());
-//		romain.recevoirCoup(force / 3);
-//	}
-//	
-//	public void recevoirCoup(int degat) {
-//		force = force - degat;
-//		if (force > 0) {
-//			parler(": aie");
-//		} else {
-//			force = 0;
-//			parler(": j'abandonne");
-//		}
-//	}
+public class Gaulois extends Personnage{
+	private double puissancePotion = 1;
+	private int forceOrigine;
+	
 	public Gaulois(String nom, int force) {
 		super(nom, force);
+		forceOrigine = force;
 	}
-
+	
 	@Override
-	protected String auteur() {
-		return "Le Gaulois ";
+	protected String donnerAuteur() {
+		return "gaulois";
+	}
+	
+	@Override
+	public void frapper(Personnage adversaire) {
+		if (force>0 && !estMort(adversaire)) {
+			System.out.println("Le " + donnerAuteur() + " " + nom + " donne un grand coup de force " + force + " au " + adversaire.donnerAuteur() + " " + adversaire.getNom() );
+			adversaire.recevoirCoup(force);
+			if(puissancePotion > 1) {
+				puissancePotion = puissancePotion - 0.5;
+				this.force = forceOrigine * (int)puissancePotion;
+			}
+		}
+	}
+	
+	public void recevoirPotion(double potion) {
+		this.puissancePotion = potion;
+		this.force = forceOrigine * (int)puissancePotion;	
+	}
+	
+	
+	public static void main(String[] args) {
+		Gaulois asterix = new Gaulois("Astérix",8);
+		System.out.println(asterix.getNom());
 	}
 }

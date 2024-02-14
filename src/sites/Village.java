@@ -1,41 +1,51 @@
 package sites;
 
+import personnages.Grade;
 import personnages.Gaulois;
+import personnages.Soldat;
 
 public class Village {
-    private Gaulois chef;
-    private Gaulois[] villageois;
-    private int nombreVillageois;
+	Gaulois chef;
+	Gaulois[] villageois = new Gaulois[4];
+	
+	public Village(Gaulois chef) {
+		this.chef = chef;
+		chef.parler("Je suis un grand guerrier et je vais créer mon village ");
+	}
+	
+	public Gaulois getChef() {
+		return chef;
+	}
+	
+	public boolean ajouterVillageois(Gaulois gaulois) {
+		for (int i=0; i< villageois.length; i++) {
+			if (villageois[i] == null) {
+				chef.parler("Bienvenue " + gaulois.getNom() + " !");
+				villageois[i] = gaulois;
+				return true;
+			}
+		}
+		chef.parler("Désolé " + gaulois.getNom() + "  mon village est déjà bien rempli.");
+		return false;
+	}
+	
+	public void afficherVillageois() {
+		String affichageVillage = "Le village dirigé par " + chef.getNom() + " est habité par : \n";
+		for (int i=0; i<villageois.length;i++) {
+			if(villageois[i]!=null) {
+				affichageVillage += "- " + villageois[i].getNom() + "\n"; 
+			}
+		}
+		System.out.println(affichageVillage);
+	}
+	
+	public void changerChef(Gaulois gaulois) {
+			chef.parler("Je laisse mon grand bouclier au grand " + gaulois.getNom() );
+			chef = gaulois;
+			chef.parler("Merci !");
+	}
+	
+	
+	
 
-    public Village(Gaulois chef) {
-        this.chef = chef;
-        this.villageois = new Gaulois[4];
-        this.nombreVillageois = 0;
-    }
-
-    public Gaulois getChef() {
-        return chef;
-    }
-
-    public void ajouterVillageois(Gaulois villageois) {
-        if (nombreVillageois < 4) {
-            this.villageois[nombreVillageois++] = villageois;
-            chef.parler(": \"Bienvenue " + villageois.getNom() + " !\"");
-        } else {
-            chef.parler(" : \"Désolé " + villageois.getNom() + ", mon village est déjà bien rempli !\"");
-        }
-    }
-    
-    public void afficherVillage() {
-        System.out.println("Village de " + chef.getNom() + " est habité par :");
-        for (int i = 0; i < nombreVillageois; i++) {
-            System.out.println("- " + villageois[i].getNom());
-        }
-    }
-    
-    public void changerChef(Gaulois nouveauChef) {
-    	chef.parler(" : \" Je laisse mon grand bouclier au grand " + nouveauChef.getNom() + ".\"");
-    	nouveauChef.parler(" : \" Merci !\"");
-        chef = nouveauChef;
-    }
 }

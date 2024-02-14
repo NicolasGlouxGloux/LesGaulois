@@ -1,74 +1,48 @@
 package test_fonctionnel;
 
+import personnages.Armure;
+import personnages.Druide;
 import personnages.Gaulois;
 import personnages.Grade;
 import personnages.Romain;
 import personnages.Soldat;
-import personnages.Centurion;
-import sites.Village;
-import sites.Camp;
-import personnages.Druide;
 
 public class TestGaulois {
 	public static void main(String[] args) {
-		Gaulois asterix = new Gaulois("Asterix", 8);
-		Centurion minus = new Centurion("Minus", 6);
-		asterix.parler(": \"Bonjour a tous\"");
-		minus.parler("\"UN GAU.. UN GAUGAU...\"");
-		for (int i = 0; i < 3; i++) {
-			if (asterix.getForce() > 0) {
-				asterix.frapper(minus);
-			}
-			if (minus.getForce() > 0) {
-				minus.frapper(asterix);
-			}
+		
+		Gaulois asterix = new Gaulois("Astérix",5);
+		Soldat minus = new Soldat ("Minus",Grade.SOLDAT,6);
+		
+		//System.out.println(asterix.getNom());
+		
+		Gaulois obelix = new Gaulois("Obélix",15);
+		Gaulois assurancetourix = new Gaulois("Assurancetourix",4);
+		Gaulois abraracourcix = new Gaulois("Abraracourcix",4);
+		Gaulois agecanonix = new Gaulois("Agecanonix",4);
+		
+		minus.equiperArmure(Armure.BOUCLIER);
+		minus.equiperArmure(Armure.CASQUE);
+		minus.equiperArmure(Armure.PLASTRON);
+		
+		Druide panoramix = new Druide("Panoramix",1);
+		panoramix.fabriquerPotion(3);
+		
+		
+		panoramix.donnerPotion(asterix);
+		panoramix.donnerPotion(obelix);
+		panoramix.donnerPotion(assurancetourix);
+		panoramix.donnerPotion(abraracourcix);
+		panoramix.donnerPotion(agecanonix);
+		
+		
+		
+		asterix.parler("Bonjour à tous");
+		minus.parler("Un Gau .. Gaugole");
+		
+		
+		for (int i = 0; i<4; i++) {
+			asterix.frapper(minus);
+			minus.frapper(asterix);
 		}
-		Gaulois vercingetorix = new Gaulois("Vercingetorix", 5);
-		Gaulois agecanonix = new Gaulois("Agecanonix", 1);
-		Gaulois assurancetourix = new Gaulois("Assurancetourix", 2);
-		Gaulois obelix = new Gaulois("Obelix", 15);
-		Gaulois prolix = new Gaulois("Prolix", 2);
-		Druide panoramix = new Druide("Panoramix", 3, 3);
-		panoramix.parler(" : \"J'ai concoct� " + panoramix.getNbDoses() + " doses de potion magique. Elle a une force de " + .\"");
-
-		// Creation des soldats
-		Soldat brutus = new Soldat("Brutus", 2,Grade.CENTURION);
-		Soldat milexcus = new Soldat("Milexcus", 2,Grade.OPTIO);
-		Soldat tulliusOctopus = new Soldat("Tullius Octopus", 2,Grade.TESSERARIUS);
-		Soldat ballondebaudrus = new Soldat("Ballondebaudrus", 3,Grade.SOLDAT);
-
-        Village village = new Village(vercingetorix);
-        vercingetorix.parler(" : \"Je suis un grand guerrier et je vais creer mon village.\"");
-
-        Camp camp = new Camp(minus);
-
-		// Ajout des gaulois au village
-		village.ajouterVillageois(agecanonix);
-		village.ajouterVillageois(assurancetourix);
-		village.ajouterVillageois(asterix);
-		village.ajouterVillageois(obelix);
-		village.ajouterVillageois(prolix);
-
-		// Ajout des soldats au camp
-		camp.ajouterSoldat(brutus);
-		camp.ajouterSoldat(milexcus);
-		camp.ajouterSoldat(tulliusOctopus);
-		camp.ajouterSoldat(ballondebaudrus);
-
-        village.afficherVillage();
-        camp.afficherCamp();
-        
-        Gaulois abraracourcix = new Gaulois("Abraracourcix", 5);
-        Soldat briseradius = new Soldat("Briseradius", 4, Grade.SOLDAT);
-        Soldat chorus = new Soldat("Chorus", 4, Grade.CENTURION);
-        
-        // Changement de chef et de commandant
-        village.changerChef(abraracourcix);
-        camp.changerCommandant(briseradius);
-        camp.changerCommandant(chorus);
-
-        // Affichage apres les changements
-        village.afficherVillage();
-        camp.afficherCamp();
 	}
 }

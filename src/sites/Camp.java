@@ -4,49 +4,49 @@ import personnages.Grade;
 import personnages.Soldat;
 
 public class Camp {
-	private Soldat commandant;
-	private Soldat[] soldats;
-	private int nombreSoldats;
-
+	Soldat commandant;
+	Soldat[] soldats = new Soldat[3];
+	
+	
 	public Camp(Soldat commandant) {
 		this.commandant = commandant;
-		this.soldats = new Soldat[3];
-		this.nombreSoldats = 0;
+		commandant.parler("Je suis en charge de créer un nouveau camp romain.");
 	}
-
+	
 	public Soldat getCommandant() {
 		return commandant;
 	}
-
-	public void ajouterSoldat(Soldat soldat) {
-		if (nombreSoldats < 3) {
-			this.soldats[nombreSoldats++] = soldat;
-			System.out.println(
-					"Le romain " + soldat.getNom() + " : \"Je mets mon épée au service de Rome dans le camp dirigé par "
-							+ commandant.getNom() + "\".");
-		} else {
-			System.out.println("Le romain " + commandant.getNom() + " : \"Désolé " + soldat.getNom()
-					+ ", notre camp est complet !\"");
+	
+	public boolean ajouterSoldat(Soldat soldat) {
+		for (int i=0; i< soldats.length; i++) {
+			if (soldats[i] == null) {
+				soldat.parler(" Je mets mon épée au service de Rome dans le camp dirigé par " + commandant.getNom());
+				soldats[i] = soldat;
+				return true;
+			}
 		}
+		commandant.parler("Désolé " + soldat.getNom() + " notre camp est complet !");
+		return false;
 	}
-
+	
 	public void afficherCamp() {
-		System.out.println("Le camp dirigé par " + commandant.getNom() + " contient les soldats :");
-		for (int i = 0; i < nombreSoldats; i++) {
-			System.out.println("- " + soldats[i].getNom());
+		String affichageCamp = "Le camp dirigé par " + commandant.getNom() + " contient les soldats : \n";
+		for (int i=0; i<soldats.length;i++) {
+			if(soldats[i]!=null) {
+				affichageCamp += "- " + soldats[i].getNom() + "\n"; 
+			}
+		}
+		System.out.println(affichageCamp);
+	}
+	
+	public void changerCommandant(Soldat soldat) {
+		if(soldat.grade == Grade.CENTURION) {
+			commandant = soldat;
+			commandant.parler("Moi "+ commandant.getNom() + " je prends la direction du camp romain.");
+		}
+		else {
+			soldat.parler("Je ne suis pas suffisamment gradé pour prendre la direction du camp romain.");
 		}
 	}
-
-	public void changerCommandant(Soldat nouveauCommandant) {
-		if (nouveauCommandant.getGrade().equals(Grade.CENTURION)) {
-			System.out.println("Le romain " + commandant.getNom() + " : \"Je laisse mon rôle à "
-					+ nouveauCommandant.getNom() + ".\"");
-			System.out.println("Le romain " + nouveauCommandant.getNom() + " : \"Moi " + nouveauCommandant.getNom()
-					+ ", je prends la direction du camp romain.\"");
-			commandant = nouveauCommandant;
-		} else {
-			System.out.println("Le romain " + commandant.getNom()
-					+ " : \"Je ne peux pas laisser la direction du camp à un non-centurion.\"");
-		}
-	}
+	
 }
