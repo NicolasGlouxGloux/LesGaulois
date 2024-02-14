@@ -7,7 +7,7 @@ import personnages.Soldat;
 public class TestSites {
 	public static void main(String[] args) {
 		// Question b
-		Gaulois vercingetorix = new Gaulois("Versingétorix",5);
+		Gaulois vercingetorix = new Gaulois("Versingetorix",5);
 		Soldat minus = new Soldat("Minus", Grade.CENTURION,2);
 		
 		Village village = new Village(vercingetorix);
@@ -17,7 +17,7 @@ public class TestSites {
 		// Question d
 		Gaulois agecanonix = new Gaulois("Agecanonix",1);
 		Gaulois assurancetourix = new Gaulois("Assurancetourix",2);
-		Gaulois asterix = new Gaulois("Astérix",5);
+		Gaulois asterix = new Gaulois("Asterix",5);
 		Gaulois obelix = new Gaulois("Obelix",15);
 		Gaulois prolix = new Gaulois("Prolix",2);
 		

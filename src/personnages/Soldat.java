@@ -43,7 +43,7 @@ public class Soldat extends Romain {
 	public void equiperArmure(Armure equipement) {
 		for (int i = 0; i < armure.length; i++) {
 	        if (armure[i] == equipement) {
-	        	this.parler("J'ai déjà un " + equipement.getNom());
+	        	this.parler("J'ai deja� un " + equipement.getNom());
 	            return;
 	        }
 	    }
@@ -51,7 +51,7 @@ public class Soldat extends Romain {
 	    for (int i = 0; i < armure.length; i++) {
 	        if (armure[i] == null) {
 	            armure[i] = equipement;   
-	            System.out.println("Le " + donnerAuteur() + " " + nom + " s'équipe avec un " + equipement.getNom() + ".");
+	            System.out.println("Le " + donnerAuteur() + " " + nom + " s'equipe avec un " + equipement.getNom() + ".");
 	            return;
 	        }
 	    }

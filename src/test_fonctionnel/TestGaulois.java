@@ -10,12 +10,12 @@ import personnages.Soldat;
 public class TestGaulois {
 	public static void main(String[] args) {
 		
-		Gaulois asterix = new Gaulois("Astérix",5);
+		Gaulois asterix = new Gaulois("Asterix",5);
 		Soldat minus = new Soldat ("Minus",Grade.SOLDAT,6);
 		
 		//System.out.println(asterix.getNom());
 		
-		Gaulois obelix = new Gaulois("Obélix",15);
+		Gaulois obelix = new Gaulois("Obelix",15);
 		Gaulois assurancetourix = new Gaulois("Assurancetourix",4);
 		Gaulois abraracourcix = new Gaulois("Abraracourcix",4);
 		Gaulois agecanonix = new Gaulois("Agecanonix",4);
@@ -36,7 +36,7 @@ public class TestGaulois {
 		
 		
 		
-		asterix.parler("Bonjour à tous");
+		asterix.parler("Bonjour a tous");
 		minus.parler("Un Gau .. Gaugole");
 		
 		

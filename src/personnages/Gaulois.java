@@ -15,25 +15,23 @@ public class Gaulois extends Personnage{
 	}
 	
 	@Override
-	public void frapper(Personnage adversaire) {
-		if (force>0 && !estMort(adversaire)) {
-			System.out.println("Le " + donnerAuteur() + " " + nom + " donne un grand coup de force " + force + " au " + adversaire.donnerAuteur() + " " + adversaire.getNom() );
-			adversaire.recevoirCoup(force);
-			if(puissancePotion > 1) {
-				puissancePotion = puissancePotion - 0.5;
-				this.force = forceOrigine * (int)puissancePotion;
-			}
+	protected int ajusterForceFrappe () {
+		int forceFrappe = super.ajusterForceFrappe();
+		if(puissancePotion > 1) {
+			puissancePotion = puissancePotion - 0.5;
+			forceFrappe = forceFrappe * (int)puissancePotion;
 		}
+		return forceFrappe;
 	}
+	
 	
 	public void recevoirPotion(double potion) {
 		this.puissancePotion = potion;
-		this.force = forceOrigine * (int)puissancePotion;	
 	}
 	
 	
 	public static void main(String[] args) {
-		Gaulois asterix = new Gaulois("Astérix",8);
+		Gaulois asterix = new Gaulois("Asterix",8);
 		System.out.println(asterix.getNom());
 	}
 }

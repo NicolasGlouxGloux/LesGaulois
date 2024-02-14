@@ -10,7 +10,7 @@ public class Village {
 	
 	public Village(Gaulois chef) {
 		this.chef = chef;
-		chef.parler("Je suis un grand guerrier et je vais créer mon village ");
+		chef.parler("Je suis un grand guerrier et je vais creer mon village ");
 	}
 	
 	public Gaulois getChef() {
@@ -25,12 +25,12 @@ public class Village {
 				return true;
 			}
 		}
-		chef.parler("Désolé " + gaulois.getNom() + "  mon village est déjà bien rempli.");
+		chef.parler("Desole " + gaulois.getNom() + "  mon village est deja� bien rempli.");
 		return false;
 	}
 	
 	public void afficherVillageois() {
-		String affichageVillage = "Le village dirigé par " + chef.getNom() + " est habité par : \n";
+		String affichageVillage = "Le village dirige par " + chef.getNom() + " est habite par : \n";
 		for (int i=0; i<villageois.length;i++) {
 			if(villageois[i]!=null) {
 				affichageVillage += "- " + villageois[i].getNom() + "\n"; 
